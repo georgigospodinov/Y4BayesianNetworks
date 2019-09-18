@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BIF VERSION="0.3" xmlns="http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3 http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3/XMLBIFv0_3.xsd">
+    <NETWORK>
+        <NAME>Simple Diagnostic Example</NAME>
+        <PROPERTY>detailed = This is example 6.14, shown in Figure 6.3 of Poole and Mackworth, Artificial Intelligence:
+            foundations of computational agents. Copyright Poole and Mackworth, 2009. This may be used under a Creative
+            Commons Attribution-Noncommercial-Share Alike 2.5 Canada License
+            http://creativecommons.org/licenses/by-nc-sa/2.5/ca/
+        </PROPERTY>
+        <PROPERTY>short = Influenza and Smoking Example of Poole and Mackworth, Artificial Intelligence.</PROPERTY>
+
+        <VARIABLE TYPE="nature">
+            <NAME>Sore Throat</NAME>
+            <OUTCOME>T</OUTCOME>
+            <OUTCOME>F</OUTCOME>
+            <PROPERTY>position = (7636.107421875, 5147.74658203125)</PROPERTY>
+        </VARIABLE>
+
+        <VARIABLE TYPE="nature">
+            <NAME>Fever</NAME>
+            <OUTCOME>T</OUTCOME>
+            <OUTCOME>F</OUTCOME>
+            <PROPERTY>position = (7239.73779296875, 5223.05810546875)</PROPERTY>
+        </VARIABLE>
+
+        <VARIABLE TYPE="nature">
+            <NAME>Bronchitis</NAME>
+            <OUTCOME>T</OUTCOME>
+            <OUTCOME>F</OUTCOME>
+            <PROPERTY>position = (7635.26025390625, 5267.4384765625)</PROPERTY>
+        </VARIABLE>
+
+        <VARIABLE TYPE="nature">
+            <NAME>Wheezing</NAME>
+            <OUTCOME>T</OUTCOME>
+            <OUTCOME>F</OUTCOME>
+            <PROPERTY>position = (7785.5654296875, 5395.14697265625)</PROPERTY>
+        </VARIABLE>
+
+        <VARIABLE TYPE="nature">
+            <NAME>Smokes</NAME>
+            <OUTCOME>T</OUTCOME>
+            <OUTCOME>F</OUTCOME>
+            <PROPERTY>position = (7780.32568359375, 5046.45751953125)</PROPERTY>
+        </VARIABLE>
+
+        <VARIABLE TYPE="nature">
+            <NAME>Coughing</NAME>
+            <OUTCOME>T</OUTCOME>
+            <OUTCOME>F</OUTCOME>
+            <PROPERTY>position = (7506.5556640625, 5403.54248046875)</PROPERTY>
+        </VARIABLE>
+
+        <VARIABLE TYPE="nature">
+            <NAME>Cold</NAME>
+            <OUTCOME>T</OUTCOME>
+            <OUTCOME>F</OUTCOME>
+            <PROPERTY>position = (7184.43505859375, 5052.8017578125)</PROPERTY>
+        </VARIABLE>
+
+        <VARIABLE TYPE="nature">
+            <NAME>Asthma</NAME>
+            <OUTCOME>T</OUTCOME>
+            <OUTCOME>F</OUTCOME>
+            <PROPERTY>position = (7408.43603515625, 5227.1328125)</PROPERTY>
+        </VARIABLE>
+
+        <DEFINITION>
+            <FOR>Sore Throat</FOR>
+            <GIVEN>Smokes</GIVEN>
+            <TABLE>0.7 0.3 0.2 0.8</TABLE>
+        </DEFINITION>
+
+        <DEFINITION>
+            <FOR>Fever</FOR>
+            <GIVEN>Cold</GIVEN>
+            <TABLE>0.8 0.2 0.3 0.7</TABLE>
+        </DEFINITION>
+
+        <DEFINITION>
+            <FOR>Bronchitis</FOR>
+            <GIVEN>Sore Throat</GIVEN>
+            <TABLE>0.4 0.6 0.001 0.999</TABLE>
+        </DEFINITION>
+
+        <DEFINITION>
+            <FOR>Wheezing</FOR>
+            <GIVEN>Bronchitis</GIVEN>
+            <TABLE>0.6 0.4 0.1 0.9</TABLE>
+        </DEFINITION>
+
+        <DEFINITION>
+            <FOR>Smokes</FOR>
+            <TABLE>0.2 0.8</TABLE>
+        </DEFINITION>
+
+        <DEFINITION>
+            <FOR>Coughing</FOR>
+            <GIVEN>Bronchitis</GIVEN>
+            <GIVEN>Asthma</GIVEN>
+            <TABLE>0.99 0.01 0.85 0.15 0.5 0.5 0.1 0.9</TABLE>
+        </DEFINITION>
+
+        <DEFINITION>
+            <FOR>Cold</FOR>
+            <TABLE>0.3 0.7</TABLE>
+        </DEFINITION>
+
+        <DEFINITION>
+            <FOR>Asthma</FOR>
+            <TABLE>0.15 0.85</TABLE>
+        </DEFINITION>
+    </NETWORK>
+</BIF>

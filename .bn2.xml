@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BIF xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" VERSION="0.3"
+     xmlns="http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3"
+     xsi:schemaLocation="http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3 http://www.cs.ubc.ca/labs/lci/fopi/ve/XMLBIFv0_3/XMLBIFv0_3.xsd">
+    <NETWORK>
+        <NAME>BN2</NAME>
+        <PROPERTY>detailed =</PROPERTY>
+        <PROPERTY>short =</PROPERTY>
+
+        <VARIABLE TYPE="nature">
+            <NAME>Phishing</NAME>
+            <OUTCOME>T</OUTCOME>
+            <OUTCOME>F</OUTCOME>
+            <PROPERTY>position = (7600.0, 5515.0)</PROPERTY>
+        </VARIABLE>
+
+        <VARIABLE TYPE="nature">
+            <NAME>Email</NAME>
+            <OUTCOME>Personal</OUTCOME>
+            <OUTCOME>Business</OUTCOME>
+            <PROPERTY>position = (7822.0, 5513.0)</PROPERTY>
+        </VARIABLE>
+
+        <VARIABLE TYPE="nature">
+            <NAME>Phishing Detected</NAME>
+            <OUTCOME>T</OUTCOME>
+            <OUTCOME>F</OUTCOME>
+            <PROPERTY>position = (7781.0, 5608.0)</PROPERTY>
+        </VARIABLE>
+
+        <VARIABLE TYPE="nature">
+            <NAME>Maintenance</NAME>
+            <OUTCOME>T</OUTCOME>
+            <OUTCOME>F</OUTCOME>
+            <PROPERTY>position = (7970.0, 5333.0)</PROPERTY>
+        </VARIABLE>
+
+        <VARIABLE TYPE="nature">
+            <NAME>Firewall</NAME>
+            <OUTCOME>On</OUTCOME>
+            <OUTCOME>Off</OUTCOME>
+            <PROPERTY>position = (7981.0, 5457.0)</PROPERTY>
+        </VARIABLE>
+
+        <VARIABLE TYPE="nature">
+            <NAME>Maintenance Info Outdated</NAME>
+            <OUTCOME>T</OUTCOME>
+            <OUTCOME>F</OUTCOME>
+            <PROPERTY>position = (8160.0, 5457.0)</PROPERTY>
+        </VARIABLE>
+
+        <VARIABLE TYPE="nature">
+            <NAME>Network Protected</NAME>
+            <OUTCOME>T</OUTCOME>
+            <OUTCOME>F</OUTCOME>
+            <PROPERTY>position = (8040.0, 5563.0)</PROPERTY>
+        </VARIABLE>
+
+        <VARIABLE TYPE="nature">
+            <NAME>Work Day</NAME>
+            <OUTCOME>T</OUTCOME>
+            <OUTCOME>F</OUTCOME>
+            <PROPERTY>position = (8368.0, 5456.0)</PROPERTY>
+        </VARIABLE>
+
+        <VARIABLE TYPE="nature">
+            <NAME>DDoS Chance</NAME>
+            <OUTCOME>High</OUTCOME>
+            <OUTCOME>Low</OUTCOME>
+            <PROPERTY>position = (8341.0, 5545.0)</PROPERTY>
+        </VARIABLE>
+
+        <VARIABLE TYPE="nature">
+            <NAME>Activity</NAME>
+            <OUTCOME>Normal</OUTCOME>
+            <OUTCOME>Anomalous</OUTCOME>
+            <PROPERTY>position = (8512.0, 5436.0)</PROPERTY>
+        </VARIABLE>
+
+        <VARIABLE TYPE="nature">
+            <NAME>Logged</NAME>
+            <OUTCOME>T</OUTCOME>
+            <OUTCOME>F</OUTCOME>
+            <PROPERTY>position = (8494.0, 5547.0)</PROPERTY>
+        </VARIABLE>
+
+        <VARIABLE TYPE="nature">
+            <NAME>Alert</NAME>
+            <OUTCOME>T</OUTCOME>
+            <OUTCOME>F</OUTCOME>
+            <PROPERTY>position = (8191.0, 5660.0)</PROPERTY>
+        </VARIABLE>
+
+        <DEFINITION>
+            <FOR>Phishing</FOR>
+            <TABLE>0.2 0.8</TABLE>
+        </DEFINITION>
+
+        <DEFINITION>
+            <FOR>Email</FOR>
+            <TABLE>0.1 0.9</TABLE>
+        </DEFINITION>
+
+        <DEFINITION>
+            <FOR>Phishing Detected</FOR>
+            <GIVEN>Phishing</GIVEN>
+            <GIVEN>Email</GIVEN>
+            <TABLE>0.997 0.003 0.997 0.003 0.027 0.973 0.003 0.997</TABLE>
+        </DEFINITION>
+
+        <DEFINITION>
+            <FOR>Maintenance</FOR>
+            <TABLE>0.75 0.25</TABLE>
+        </DEFINITION>
+
+        <DEFINITION>
+            <FOR>Firewall</FOR>
+            <GIVEN>Maintenance</GIVEN>
+            <TABLE>0.95 0.05 1.0 0.0</TABLE>
+        </DEFINITION>
+
+        <DEFINITION>
+            <FOR>Maintenance Info Outdated</FOR>
+            <TABLE>0.02 0.98</TABLE>
+        </DEFINITION>
+
+        <DEFINITION>
+            <FOR>Network Protected</FOR>
+            <GIVEN>Firewall</GIVEN>
+            <GIVEN>Maintenance Info Outdated</GIVEN>
+            <TABLE>0.9 0.1 1.0 0.0 0.0 1.0 0.01 0.99</TABLE>
+        </DEFINITION>
+
+        <DEFINITION>
+            <FOR>Work Day</FOR>
+            <TABLE>0.72 0.28</TABLE>
+        </DEFINITION>
+
+        <DEFINITION>
+            <FOR>DDoS Chance</FOR>
+            <GIVEN>Work Day</GIVEN>
+            <TABLE>0.01 0.99 0.1 0.9</TABLE>
+        </DEFINITION>
+
+        <DEFINITION>
+            <FOR>Activity</FOR>
+            <TABLE>0.9 0.1</TABLE>
+        </DEFINITION>
+
+        <DEFINITION>
+            <FOR>Logged</FOR>
+            <GIVEN>Activity</GIVEN>
+            <TABLE>0.3 0.7 0.7 0.3</TABLE>
+        </DEFINITION>
+
+        <DEFINITION>
+            <FOR>Alert</FOR>
+            <GIVEN>Phishing Detected</GIVEN>
+            <GIVEN>Network Protected</GIVEN>
+            <GIVEN>DDoS Chance</GIVEN>
+            <GIVEN>Logged</GIVEN>
+            <GIVEN>SQL Inject Detected</GIVEN>
+            <TABLE>0.52 0.48 0.4 0.6 0.48 0.52 0.36 0.64 0.28 0.72 0.16 0.84 0.24 0.76 0.12 0.88 0.8 0.2 0.68 0.32 0.76
+                0.24 0.64 0.36 0.56 0.44 0.44 0.56 0.52 0.48 0.4 0.6 0.4 0.6 0.28 0.72 0.36 0.64 0.24 0.76 0.16 0.84 0.4
+                0.6 0.12 0.88 8.0E-5 0.99992 0.68 0.32 0.56 0.44 0.64 0.36 0.52 0.48 0.44 0.56 0.32 0.68 0.4 0.6 0.28
+                0.72
+            </TABLE>
+        </DEFINITION>
+
+        <VARIABLE TYPE="nature">
+            <NAME>SQL Inject</NAME>
+            <OUTCOME>T</OUTCOME>
+            <OUTCOME>F</OUTCOME>
+            <PROPERTY>position = (8811.0, 5495.0)</PROPERTY>
+        </VARIABLE>
+
+        <VARIABLE TYPE="nature">
+            <NAME>SQL Inject Detected</NAME>
+            <OUTCOME>T</OUTCOME>
+            <OUTCOME>F</OUTCOME>
+            <PROPERTY>position = (8745.0, 5617.0)</PROPERTY>
+        </VARIABLE>
+
+        <DEFINITION>
+            <FOR>SQL Inject</FOR>
+            <TABLE>0.2 0.8</TABLE>
+        </DEFINITION>
+
+        <DEFINITION>
+            <FOR>SQL Inject Detected</FOR>
+            <GIVEN>SQL Inject</GIVEN>
+            <TABLE>0.9 0.1 0.1 0.9</TABLE>
+        </DEFINITION>
+    </NETWORK>
+</BIF>

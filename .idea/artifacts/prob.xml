@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="prob">
+    <output-path>$PROJECT_DIR$/out/artifacts/prob</output-path>
+    <root id="archive" name="prob.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/target/META-INF/MANIFEST.MF" />
+      </element>
+      <element id="module-output" name="BayesianNetworks" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/commons/commons-math3/3.0/commons-math3-3.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/encog/encog-core/3.3.0/encog-core-3.3.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
